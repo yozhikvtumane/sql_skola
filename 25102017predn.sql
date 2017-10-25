@@ -36,5 +36,13 @@
 --from SALES
 
 --typy prodanych polozek
-select list( distinct ITEM_TYPE)
+--select list( distinct ITEM_TYPE)
+--from SALES
+
+-- Soucet nasobku
+--select sum(QTY_ORDERED * DISCOUNT)
+--from SALES
+
+
+select sum(QTY_ORDERED) * avg(DISCOUNT)
 from SALES
