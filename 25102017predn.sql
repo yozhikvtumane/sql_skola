@@ -108,8 +108,14 @@
 
 /*Kody vsech oddeleni ktere jiz firmu stal pres 2M */
 
-select  DEPT_NO, sum(PROJECTED_BUDGET)
-from PROJ_DEPT_BUDGET
-group by DEPT_NO
-having sum(PROJECTED_BUDGET) > 2000000
-order by 2
+--select  DEPT_NO, sum(PROJECTED_BUDGET)
+--from PROJ_DEPT_BUDGET
+--group by DEPT_NO
+--having sum(PROJECTED_BUDGET) > 2000000
+--order by 2
+
+/*prodejci, kteri vydelali vice nez 50k*/
+select SALES_REP, sum(TOTAL_VALUE) kasjhd
+from SALES
+group by SALES_REP
+having sum(TOTAL_VALUE) > 50000
