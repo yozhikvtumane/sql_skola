@@ -44,5 +44,51 @@
 --from SALES
 
 
-select sum(QTY_ORDERED) * avg(DISCOUNT)
-from SALES
+--select sum(QTY_ORDERED) * avg(DISCOUNT)
+--from SALES
+
+--Platu vsech zames v $ (z USA)
+--select SALARY
+--from EMPLOYEE
+--where JOB_COUNTRY = 'USA'
+
+--Soucet platu vsech zamestnancu v $ (z USA)
+--select sum(SALARY)
+--from EMPLOYEE
+--where JOB_COUNTRY = 'USA'
+
+--Pocet oddleni s rozp nad million
+--select count(*)
+--from DEPARTMENT
+--where BUDGET > 1000000
+
+
+----Pocet vsech zam prijatych v roce 1991 (v1)
+--select count(*)
+--from EMPLOYEE
+--where HIRE_DATE >= '1991-01-01'  and HIRE_DATE <= '1991-12-31'
+
+
+--Pocet vsech zam prijatych v roce 1991 (v2)
+--select count(*)
+--from EMPLOYEE
+--where extract(year from HIRE_DATE) = 1991
+
+--ROK MESIC A den prijetu
+
+--select FULL_NAME,
+--    extract(year from HIRE_DATE) ROK,
+--    extract(month from HIRE_DATE) MESIC,
+--    extract(day from HIRE_DATE) DEN
+--from EMPLOYEE
+
+--Soucty platu vsech zamesntnancu v jednotlivych oddleni
+--select DEPT_NO, sum(SALARY)
+--from EMPLOYEE
+--group by DEPT_NO
+
+--Pocty zamestnancu na jednotlyvich pozicich (jobcode)
+select       JOB_CODE, count(*) POCET
+from EMPLOYEE
+group by JOB_CODE
+order by POCET desc
