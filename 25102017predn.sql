@@ -88,7 +88,28 @@
 --group by DEPT_NO
 
 --Pocty zamestnancu na jednotlyvich pozicich (jobcode)
-select       JOB_CODE, count(*) POCET
-from EMPLOYEE
-group by JOB_CODE
-order by POCET desc
+--select       JOB_CODE, count(*) POCET
+--from EMPLOYEE
+--group by JOB_CODE
+--order by POCET desc
+
+
+--Pocty zamestnancu na jednotlyvich pozicich pozicich(jobcode)
+--select       JOB_CODE JC, count(*) POCET      /*JC - alias*/
+--from EMPLOYEE
+--group by JC
+--order by POCET desc
+
+----Pocty zamestnancu v jednotlyvich zemech na jednotlyvich pozicich(jobcode)
+--select JOB_COUNTRY, JOB_CODE, count(*) POCET
+--from EMPLOYEE
+--group by JOB_COUNTRY, JOB_CODE
+--order by         JOB_COUNTRY, JOB_CODE, POCET
+
+/*Kody vsech oddeleni ktere jiz firmu stal pres 2M */
+
+select  DEPT_NO, sum(PROJECTED_BUDGET)
+from PROJ_DEPT_BUDGET
+group by DEPT_NO
+having sum(PROJECTED_BUDGET) > 2000000
+order by 2
