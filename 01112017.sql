@@ -29,9 +29,25 @@
 --from DEPARTMENT as d , EMPLOYEE as e
 --where d.DEPT_NO = e.DEPT_NO
 
-/*Jmeno zam a oddeleni na kterem pracuje v2*/
+/*Jmeno zam a oddeleni na kterem pracuje v2*/             
+--select d.DEPARTMENT, e.FULL_NAME
+--from DEPARTMENT as d
+--    cross join EMPLOYEE as e
+--where d.DEPT_NO = e.DEPT_NO
+
+/*Nazev oddeleni a jmeno jeho managera */
+
+--select d.DEPARTMENT, e.FULL_NAME
+--from DEPARTMENT d
+--   left join EMPLOYEE as e on e.EMP_NO = d.MNGR_NO   /*inner join - join */
+
+   /*Nazev oddeleni a jmeno jeho managera */
+
 select d.DEPARTMENT, e.FULL_NAME
-from DEPARTMENT as d
-    cross join EMPLOYEE as e
-where d.DEPT_NO = e.DEPT_NO
+from DEPARTMENT d
+   right join EMPLOYEE as e on e.EMP_NO = d.MNGR_NO   /*inner join - join */
+
+
+
+
 
