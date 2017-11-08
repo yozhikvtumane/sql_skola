@@ -82,3 +82,55 @@ select sum(iif(PAID = 'y',  TOTAL_VALUE, 0)) ZAPLACENO,
        sum(iif(PAID = 'n',  TOTAL_VALUE, 0)) NEZAPLACENO,
        sum(TOTAL_VALUE) CELKEM
 from SALES
+
+/*Extrakce casti datumu */
+
+select SHIP_DATE, extract(year from SHIP_DATE) ROK,
+extract(weekday from SHIP_DATE) DEN
+from SALES
+
+/*zvyseni data o 2 roky*/
+select SHIP_DATE, dateadd (2 year to SHIP_DATE) KONEC_ZARUKY
+from SALES
+
+/*Aktualni datum*/
+
+select current_timestamp
+from RDB$DATABASE
+
+/*rozdil dvou datumu*/
+select HIRE_DATE, current_date, datediff(year, HIRE_DATE, current_date)
+from EMPLOYEE
+
+/*nahodna cials od 1 do 10*/
+select cast(trunc(rand() * 10) as integer )
+from DEPARTMENT
+
+/*Zakrouhlavani*/
+select  TOTAL_VALUE,
+        TOTAL_VALUE * 0.21 DPH,
+        TOTAL_VALUE * 1.21 s_DPH,
+        round(TOTAL_VALUE * 1.21 , 2) zaokruhleno
+from SALES
+
+/*Zamestnance, kteri maji ve jmene B */
+select FULL_NAME
+from EMPLOYEE
+where FULL_NAME like '%b%'
+
+/*Textove prikoly*/
+select   FULL_NAME,
+         left(FULL_NAME, 5),
+         right(FULL_NAME, 5),
+         substring(FULL_NAME from 2 for 5),
+         replace(FULL_NAME, ',' , ' -'),
+         reverse(FULL_NAME),
+         lpad(FULL_NAME, 60, '-'),
+--         lpad(),
+--         trim(),
+         char_length(FULL_NAME),
+         bit_length(FULL_NAME)
+from EMPLOYEE
+
+
+
